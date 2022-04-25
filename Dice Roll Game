@@ -1,0 +1,32 @@
+import random
+
+def get_damage(attack, defense):
+  attack = get_roll(attack)
+  defense = get_roll(defense)
+  if defense > attack:
+    return 0
+  else:
+    return attack - defense
+
+def get_roll(rollstring):
+  dicenum = int(rollstring.split('d')[0])
+  sidenum = int(rollstring.split('d')[1])
+  for i in range(dicenum):
+    result = random.randint(dicenum, sidenum)
+    return result
+
+def main_menu():
+  a = int(input("How many rounds do you want to play?: "))
+  b = 0
+  list = []
+  for roll in range(0,a):
+    print("Input Player 1 and Player 2's rolls for round", roll + 1, ": ")
+    x = input()
+    list = list + x.split(",")
+  for element in range(0,a):
+    attack = list[b]
+    defense = list[b+1]
+    print("Player 1 Attack:", attack, ", Player 2 Defense:", defense, ">>", "Damage:", get_damage(attack, defense))
+    b = b + 2
+
+main_menu()
