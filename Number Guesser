@@ -1,0 +1,30 @@
+import random
+
+print("Think of a number in your head and the computer will try to guess it!")
+
+print("Once you see the guess, you can tell the computer if the guess was too high, too low, or correct.")
+
+guess = random.randint(1,20) # There is now a random number between 1 and 20 stored in guess.
+
+print("The computer guesses", guess)
+print("Enter h if the guess was too high.")
+print("Enter l if the guess was too low.")
+print("Enter c if the guess was correct.")
+result = input("")
+
+while result != "c":
+  if result == "l":
+    guess = guess + random.randint(1,4)
+    if guess > 20:
+      guess = 20
+  elif result == "h":
+    guess = guess - random.randint(1,4)
+    if guess < 0:
+      guess = 1
+  print("The computer guesses", guess)
+  print("Enter h if the guess was too high.")
+  print("Enter l if the guess was too low.")
+  print("Enter c if the guess was correct.")
+  result = input("")
+if result == "c":
+  print("Good stuff!")
