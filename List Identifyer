@@ -1,0 +1,14 @@
+a = int(input("Enter first number. "))
+b = int(input("Enter second number. "))
+c = int(input("Enter third number. "))
+numlist = []
+numlist.extend((a, b, c))
+print(numlist)
+print("The smallest number is", min(numlist))
+
+if a == b == c:
+  print("There are three equal numbers.")
+elif a == b or a == c or b == c:
+  print ("There are two equal numbers.")
+else:
+  print("There are zero equal numbers.")
