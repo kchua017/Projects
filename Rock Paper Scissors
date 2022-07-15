@@ -1,0 +1,28 @@
+import random
+
+while True:
+  user_input = input("Choose your action: rock, paper, or scissors. ")
+  choices = ["rock", "paper", "scissors"]
+  ai_action = random.choice(choices)
+
+  if user_input == ai_action:
+    print("Both players chose {user_input}. It's a tie!")
+  elif user_input == "rock":
+    if ai_action == "paper":
+      print("Computer chose paper. You lose!")
+    elif ai_action == "scissors":
+      print("Computer chose scissors. You win!")
+  elif user_input == "paper":
+    if ai_action == "scissors":
+      print("Computer chose scissors. You lose!")
+    elif ai_action == "rock":
+      print("Computer chose rock. You win!")
+  elif user_input == "scissors":
+    if ai_action == "rock":
+      print("Computer chose rock. You lose!")
+    elif ai_action == "paper":
+      print("Computer chose paper. You win!")
+
+  play_again = input("Would you like to play again? Enter y/n . ")
+  if play_again.lower() != "y":
+    break
