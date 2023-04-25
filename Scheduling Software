@@ -1,0 +1,76 @@
+meetings = {}
+available_times = {
+    "Monday": ['1:00', '1:30', '2:00', '2:30', '3:00', '3:30'],
+    "Tuesday": ['1:00', '1:30', '2:00', '2:30', '3:00', '3:30'],
+    "Wednesday": ['1:00', '1:30', '2:00', '2:30', '3:00', '3:30'],
+    "Thursday": ['1:00', '1:30', '2:00', '2:30', '3:00', '3:30']
+}
+days = {
+        "1": "Monday",
+        "2": "Tuesday",
+        "3": "Wednesday",
+        "4": "Thursday"
+    }
+
+def schedule_meeting():
+    print("Please choose a day:")
+    for choice, day in days.items():
+        print(f"{choice}. {day}")
+    
+    day_choice = input("Enter your choice (1-4): ")
+    if days[day_choice] not in meetings:
+        meetings[days[day_choice]] = []
+  
+    scheduled_times = meetings[days[day_choice]]
+    
+    print("Available times for", days[day_choice], ": ")
+    for available_time in available_times[days[day_choice]]:
+        print(available_time)
+    
+    time_choice = input("Enter the time you want to schedule (e.g. 1:00): ")
+    if time_choice in available_times[days[day_choice]]:
+        available_times[days[day_choice]] = [t for t in available_times[days[day_choice]] if t != time_choice]
+        
+        name = input("Enter your name: ")
+        email = input("Enter your email address: ")
+        topic = input("Enter the discussion topic (press Enter for default 'office hours'): ")
+        if not topic:
+            topic = "office hours"
+        meetings[days[day_choice]].append((time_choice, name, email, topic))
+        print("Meeting scheduled successfully.\n")
+    else:
+        print("That time is not available. Please choose a different time.")
+
+def view_meetings():
+    for day in days.values():
+        print()
+        print("Day:", day)
+        scheduled_meetings = meetings.get(day, [])
+        
+        scheduled_meetings.sort()
+        
+        if not scheduled_meetings:
+            print("No meetings scheduled for this day.")
+        
+        for meeting in scheduled_meetings:
+          print(f"{meeting[0]} - {meeting[1]} ({meeting[2]}) - {meeting[3]}")
+            
+    input("\nPress Enter to continue...")
+        
+while True:
+    print()
+    print("Main Menu")
+    print("1. Schedule a meeting")
+    print("2. View all scheduled meetings")
+    print("3. Quit")
+    choice = input("Enter your choice (1-3): ")
+    
+    if choice == '1':
+        schedule_meeting()
+    elif choice == '2':
+        view_meetings()
+    elif choice == '3':
+        print("Goodbye!")
+        break
+    else:
+        print("Invalid choice. Please try again.")
